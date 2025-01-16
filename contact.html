@@ -79,19 +79,19 @@
 
     </div>
 
-    <form action="php/mail.php" method="post">
+    <form id="contactForm" action="https://formspree.io/f/mqaaoeee" method="post">
 
         <div class="inputBox">
-            <input type="text" name="fname" placeholder="Your name">
-            <input type="number" name="phone" placeholder="Your number">
+            <input type="text" name="fname" placeholder="Your name" required>
+            <input type="number" name="phone" placeholder="Your number" required>
         </div>
 
         <div class="inputBox">
-            <input type="email" name="email" placeholder="Your email">
-            <input type="text" name="subject" placeholder="Your subject">
+            <input type="email" name="email" placeholder="Your email" required>
+            <input type="text" name="subject" placeholder="Your subject" required>
         </div>
 
-        <textarea name="message" placeholder="Your message" id="" cols="30" rows="10"></textarea>
+        <textarea name="message" placeholder="Your message" id="" cols="30" rows="10" required></textarea>
 
         <input type="submit" value="Send Message" class="btn">
 
@@ -100,6 +100,22 @@
 </div>
 
 </section>
+
+<script>
+  document.getElementById("contactForm").addEventListener("submit", function(event) {
+    let fname = document.getElementById("fname").value;
+    let phone = document.getElementById("phone").value;
+    let email = document.getElementById("email").value;
+    let subject = document.getElementById("subject").value;
+    let message = document.getElementById("message").value;
+
+    // Check if any required field is empty
+    if (!fname || !phone || !email || !subject || !message) {
+      alert("Please fill out all fields before submitting.");
+      event.preventDefault();  // Prevent form submission
+    }
+  });
+</script>
 
 <script src="js/security.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
