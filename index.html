@@ -1,116 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NIRANJAN BR</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Niranjan BR </title>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="description" content="Niranjan BR - Electrical & Electronics Engineering student specializing in Android ROM development, Linux kernel programming, and embedded systems. Passionate about system-level programming and creating innovative tech solutions." />
+    <meta name="author" content="Niranjan BR" />
+    <meta name="keywords" content="Niranjan BR, Android ROM developer, Linux kernel developer, embedded systems, EEE student, system programming, AOSP, custom ROM, tech enthusiast" />
 
-    <!-- Favicons -->
-    <link href="images/favi-icon/fox.png" rel="icon">
-    <link href="images/favi-icon/fox-icon.png" rel="karthik-icon">
+    <meta property="og:title" content="Niranjan BR" />
+    <meta property="og:description" content="Passionate about custom ROM development, Linux kernel optimization, and embedded systems, with hands-on experience in automation, wireless power transfer, and innovative hardware–software projects." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
 
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Niranjan BR" />
+    <meta name="twitter:description" content="EEE student specializing in Android ROM & Linux kernel development" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
 
-    <!-- font awesome cdn link  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-    <!-- custom css file link  -->
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
-
-<body>
-
-<!-- snow-flake 
-<div id="fa-snowflake">
-</div> -->
-
-<!-- preloaderx-->
-<div id="preloaderx">
-  <div class="preloadertext">“Good-bye and hello, as always.”</div>
-</div>
-
-<!-- navbar section starts  -->
-
-<nav class="navbar">
-  <a href="index.html"> <i class="fas fa-home"></i> <span>Home</span> </a>
-  <a href="about.html"> <i class="fas fa-user"></i> <span>About</span> </a>
-  <a href="works.html"> <i class="fas fa-briefcase"></i> <span>Works</span> </a>
-  <a href="blogs.html"> <i class="fas fa-blog"></i> <span>Blogs</span> </a>
-  <a href="contact.html"> <i class="fas fa-address-book"></i> <span>Contact</span> </a>
-</nav>
-
-<!-- navbar section ends -->
-
-<!-- home section starts  -->
-
-<section class="home">
-
-    <div class="image">
-        <img src="images/user/user.jpg" alt="">
-    </div>
-
-    <div class="content">
-        <h3><span>Hi,</span> I am Niranjan BR</h3>
-        <span>Electrical And Electronics Engineering Student | Custom Rom Developer | Linux Kernel Developer | Techenthusiast </span>
-        <a href="./about.html" class="btn"> About Me <i class="fas fa-user-lock"></i> </a>
-    </div>
-
-</section>
-
-<script src="js/security.js"></script>
-<!--<script src="js/sflake.js"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" charset="utf-8"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-<script src="js/pace.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery-bez@1.0.11/src/jquery.bez.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
-
-<script>
-  paceOptions = {
-  ajax: true,
-  document: true,
-  eventLag: false
-  };
-
-  Pace.on('done', function() {
-  $('.p').delay(330).animate({top: '30%', opacity: '0'}, 3000, $.bez([0.19,1,0.22,1]));
-
-  $('#preloaderx').delay(180).animate({top: '-100%'}, 2000, $.bez([0.19,1,0.22,1]));
-
-  TweenMax.from(".title", 2, {
-       delay: 0.5,
-            y: 10,
-            opacity: 0,
-            ease: Expo.easeInOut
-      })
- });
-</script>
-
-<script>
-    $(document).ready(function(){
-      // Add smooth scrolling to all links
-      $("a").on('click', function(event) {
-    
-        if (this.hash !== "") {
-          // Prevent default anchor click behavior
-          event.preventDefault();
-    
-          var hash = this.hash;
-    
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 800, function(){
-    
-            // Add hash (#) to URL when done scrolling (default click behavior)
-            window.location.hash = hash;
-          });
-        }
-      });
-    });
-    </script>
-
-<!-- home section ends -->
-
-</body>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

@@ -1,0 +1,305 @@
+/* Pointer-following blurred blob */
+#pointer-blob {
+  position: fixed;
+  top: 0; left: 0;
+  width: 120px; height: 120px;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(100,149,237,0.25) 60%, rgba(100,149,237,0.05) 100%);
+  filter: blur(32px);
+  opacity: 0.7;
+  z-index: 9999;
+  transition: none;
+}
+/* Blurred Gradient Background Utility */
+.bg-blur-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #0A0A0F;
+  overflow: hidden;
+}
+
+.bg-blur-gradient .blob {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.7;
+  pointer-events: none;
+  will-change: filter, opacity, transform;
+}
+
+.bg-blur-gradient .blob-top-left {
+  width: 320px; height: 320px;
+  top: -40px; left: -80px;
+  background: radial-gradient(circle, #eaf6ff 60%, #b3cfff 100%);
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+.bg-blur-gradient .blob-center-right {
+  width: 380px; height: 380px;
+  top: 40px; right: -60px;
+  background: radial-gradient(circle, #3a2e7b 60%, #1a1a40 100%);
+  filter: blur(60px);
+  opacity: 0.6;
+}
+
+.bg-blur-gradient .blob-bottom-right {
+  width: 340px; height: 340px;
+  bottom: -40px; right: -80px;
+  background: radial-gradient(circle, #f8f8fa 60%, #a0a0a0 100%);
+  filter: blur(40px);
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .bg-blur-gradient .blob-top-left { width: 160px; height: 160px; filter: blur(24px); }
+  .bg-blur-gradient .blob-center-right { width: 180px; height: 180px; filter: blur(32px); }
+  .bg-blur-gradient .blob-bottom-right { width: 140px; height: 140px; filter: blur(20px); }
+}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Niranjan's Modern Minimalist Portfolio Design System
+All colors MUST be HSL for consistent theming.
+*/
+
+@layer base {
+  :root {
+    /* Light mode - Minimal with subtle contrast */
+    --background: 0 0% 98%;
+    --foreground: 0 0% 5%;
+
+    /* Card backgrounds */
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 5%;
+
+    /* Popover styling */
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 5%;
+
+    /* Crimson red primary theme */
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 0 84% 70%;
+    --primary-dark: 0 84% 50%;
+
+    /* Secondary grays for subtle elements */
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
+
+    /* Muted elements for less emphasis */
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    /* Accent colors for highlights */
+    --accent: 0 84% 60%;
+    --accent-foreground: 0 0% 98%;
+
+    /* Status colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+
+    /* Border and input styling */
+    --border: 0 0% 90%;
+    --input: 0 0% 96%;
+    --ring: 0 84% 60%;
+
+    /* Design system properties */
+    --radius: 0.75rem;
+
+    /* Custom gradients for light mode */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 98%), hsl(0 0% 94%));
+    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 70%));
+    --gradient-accent: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(0 0% 98% / 0.95));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 94%));
+
+    /* Glass morphism effects for light mode */
+    --glass-bg: hsl(0 0% 100% / 0.8);
+    --glass-border: hsl(0 0% 5% / 0.1);
+    --glass-backdrop: blur(40px);
+
+    /* Shadows and glows for light mode */
+    --shadow-elegant: 0 20px 40px -10px hsl(0 0% 5% / 0.15);
+    --shadow-glow: 0 0 40px hsl(0 84% 60% / 0.25);
+    --shadow-accent: 0 10px 30px hsl(0 84% 60% / 0.2);
+
+    /* Smooth animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 5%;
+    --sidebar-primary: 0 84% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 96%;
+    --sidebar-accent-foreground: 0 0% 9%;
+    --sidebar-border: 0 0% 90%;
+    --sidebar-ring: 0 84% 60%;
+  }
+
+  .dark {
+    /* Dark mode - Matte black with crimson red accents */
+    --background: 0 0% 3%;
+    --foreground: 0 0% 95%;
+
+    /* Card backgrounds with matte finish */
+    --card: 0 0% 6%;
+    --card-foreground: 0 0% 95%;
+
+    /* Popover styling */
+    --popover: 0 0% 6%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Crimson red primary theme */
+    --primary: 0 84% 60%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 0 84% 70%;
+    --primary-dark: 0 84% 50%;
+
+    /* Secondary dark grays for subtle elements */
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 90%;
+
+    /* Muted elements for less emphasis */
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 60%;
+
+    /* Accent colors for highlights */
+    --accent: 0 84% 60%;
+    --accent-foreground: 0 0% 95%;
+
+    /* Status colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 95%;
+    --success: 142 76% 50%;
+    --success-foreground: 0 0% 95%;
+
+    /* Border and input styling */
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 0 84% 60%;
+
+    /* Custom gradients for dark mode - matte black with red */
+    --gradient-hero: linear-gradient(135deg, hsl(0 0% 3%), hsl(0 0% 6%));
+    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 70%));
+    --gradient-accent: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
+    --gradient-card: linear-gradient(135deg, hsl(0 0% 6% / 0.8), hsl(0 0% 9% / 0.9));
+    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 3%), hsl(0 0% 5%));
+
+    /* Glass morphism effects - matte black */
+    --glass-bg: hsl(0 0% 8% / 0.4);
+    --glass-border: hsl(0 84% 60% / 0.2);
+
+    /* Shadows and glows - red accent */
+    --shadow-elegant: 0 20px 40px -10px hsl(0 0% 0% / 0.6);
+    --shadow-glow: 0 0 40px hsl(0 84% 60% / 0.4);
+    --shadow-accent: 0 10px 30px hsl(0 84% 60% / 0.3);
+
+    --sidebar-background: 0 0% 3%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 0 84% 60%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 0 0% 9%;
+    --sidebar-accent-foreground: 0 0% 90%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 0 84% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
+    background: var(--gradient-hero);
+    min-height: 100vh;
+  }
+
+  /* Smooth scrolling for the whole page */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gradient-primary);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary;
+  }
+
+  /* Glass morphism utility class */
+  .glass {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-backdrop);
+    border: 1px solid var(--glass-border);
+  }
+
+  /* Glow effect utility */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Text glow for headings */
+  .text-glow {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Pulse glow animation */
+  @keyframes pulseGlow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+}
