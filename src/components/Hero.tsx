@@ -13,7 +13,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20"
     >
 
       <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center">
@@ -31,7 +31,10 @@ const Hero = () => {
           <div className="space-y-4 sm:space-y-6 animate-slide-up" style={{ animationDelay: '0.2s' }}>
             <div className="space-y-2 sm:space-y-3">
               <p className="text-base sm:text-lg text-muted-foreground">Hi, I am</p>
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-glow gradient-text leading-tight">
+              <h1
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-glow gradient-text drop-shadow-lg"
+                style={{ lineHeight: 1.5 }}
+              >
                 Niranjan BR
               </h1>
               <div className="text-lg sm:text-xl md:text-2xl text-muted-foreground space-y-3 sm:space-y-2">
