@@ -1,24 +1,25 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { GraduationCap, Wrench, Zap, Laptop } from 'lucide-react';
 
 const About = () => {
   const achievements = [
     {
-      icon: "🎓",
+      icon: <GraduationCap className="w-8 h-8 mx-auto" />,
       title: "EEE Student",
       description: "Pursuing Electrical & Electronics Engineering with focus on embedded systems"
     },
     {
-      icon: "🔧",
+      icon: <Wrench className="w-8 h-8 mx-auto" />,
       title: "ROM Developer", 
       description: "Creating custom Android experiences with optimized performance and features"
     },
     {
-      icon: "⚡",
+      icon: <Zap className="w-8 h-8 mx-auto" />,
       title: "Kernel Developer",
       description: "Linux kernel development and system-level programming expertise"
     },
     {
-      icon: "💻",
+      icon: <Laptop className="w-8 h-8 mx-auto" />,
       title: "Tech Enthusiast",
       description: "Always exploring cutting-edge technologies and development practices"
     }

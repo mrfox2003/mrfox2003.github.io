@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { Mail, MapPin, Github, Linkedin, Twitter, Send } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -38,13 +39,13 @@ const Contact = () => {
 
   const contactInfo = [
     {
-      icon: "📧",
+      icon: <Mail className="w-6 h-6" />,
       title: "Email",
       value: "niranjankannan2003@gmail.com",
       description: "Get in touch for collaborations"
     },
     {
-      icon: "📍",
+      icon: <MapPin className="w-6 h-6" />,
       title: "Location",
       value: "Kerala, India",
       description: "Open to remote opportunities"
@@ -54,25 +55,25 @@ const Contact = () => {
   const socialLinks = [
     {
       name: "GitHub",
-      icon: "📦",
+      icon: <Github className="w-8 h-8 mx-auto" />,
       url: "https://github.com/mrfox2003",
       description: "View my code repositories"
     },
     {
       name: "LinkedIn",
-      icon: "💼",
+      icon: <Linkedin className="w-8 h-8 mx-auto" />,
       url: "https://www.linkedin.com/in/niranjanbr2003/",
       description: "Professional network"
     },
     {
       name: "Twitter",
-      icon: "🐦",
+      icon: <Twitter className="w-8 h-8 mx-auto" />,
       url: "https://twitter.com/mrfox2003",
       description: "Tech discussions and updates"
     },
     {
       name: "Telegram",
-      icon: "✈️",
+      icon: <Send className="w-8 h-8 mx-auto" />,
       url: "https://t.me/mrfox2003",
       description: "Quick messaging"
     }

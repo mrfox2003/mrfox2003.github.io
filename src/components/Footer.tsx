@@ -1,3 +1,4 @@
+import { Mail, MapPin, Briefcase } from 'lucide-react';
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
@@ -47,9 +48,9 @@ const Footer = () => {
             <div className="space-y-4">
               <h4 className="font-semibold text-primary">Get In Touch</h4>
               <div className="space-y-2 text-muted-foreground">
-                <p>📧 niranjankannan2003@gmail.com</p>
-                <p>📍 India</p>
-                <p>💼 Available for projects</p>
+                <p><Mail className="inline-block h-4 w-4 mr-2" /> niranjankannan2003@gmail.com</p>
+                <p><MapPin className="inline-block h-4 w-4 mr-2" /> India</p>
+                <p><Briefcase className="inline-block h-4 w-4 mr-2" /> Available for projects</p>
               </div>
             </div>
           </div>
