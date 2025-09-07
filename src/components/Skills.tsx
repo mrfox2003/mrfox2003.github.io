@@ -54,17 +54,17 @@ const Skills = () => {
 
         <div className="relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <div className="text-center mb-12 sm:mb-16 animate-slide-up px-4 sm:px-0">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Technical Skills
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               My expertise spans from low-level system programming to high-level application development
             </p>
           </div>
 
           {/* Skills Grid */}
-          <div className="grid lg:grid-cols-2 gap-8">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 px-4 sm:px-0">
             {skillCategories.map((category, categoryIndex) => (
               <Card 
                 key={category.category}
@@ -72,25 +72,25 @@ const Skills = () => {
                 style={{ animationDelay: `${categoryIndex * 0.1}s` }}
               >
                 <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-primary flex items-center">
-                    <div className="w-2 h-8 bg-gradient-primary rounded-full mr-3" />
+                  <CardTitle className="text-lg sm:text-xl font-semibold text-primary flex items-center">
+                    <div className="w-2 h-6 sm:h-8 bg-gradient-primary rounded-full mr-3" />
                     {category.category}
                   </CardTitle>
                 </CardHeader>
                 
-                <CardContent className="space-y-6">
+                <CardContent className="space-y-4 sm:space-y-6">
                   {category.skills.map((skill, skillIndex) => (
                     <div 
                       key={skill.name}
                       className="space-y-2"
                       style={{ animationDelay: `${categoryIndex * 0.1 + skillIndex * 0.05}s` }}
                     >
-                      <div className="flex justify-between items-center">
-                        <div>
-                          <h4 className="font-medium text-foreground">{skill.name}</h4>
-                          <p className="text-xs text-muted-foreground">{skill.description}</p>
+                      <div className="flex justify-between items-start sm:items-center gap-2">
+                        <div className="flex-1 min-w-0">
+                          <h4 className="font-medium text-foreground text-sm sm:text-base">{skill.name}</h4>
+                          <p className="text-xs text-muted-foreground leading-tight">{skill.description}</p>
                         </div>
-                        <div className="text-sm font-medium text-primary">
+                        <div className="text-xs sm:text-sm font-medium text-primary whitespace-nowrap">
                           {skill.level}%
                         </div>
                       </div>

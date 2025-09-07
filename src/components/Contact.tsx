@@ -89,28 +89,28 @@ const Contact = () => {
 
         <div className="relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <div className="text-center mb-12 sm:mb-16 animate-slide-up px-4 sm:px-0">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Get In Touch
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               Have a project in mind or want to collaborate? I'd love to hear from you!
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            <div className="space-y-8">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 px-4 sm:px-0">
+            <div className="space-y-6 sm:space-y-8">
               {/* Contact Form */}
               <Card className="glass shadow-elegant border-border/50 animate-slide-in-left">
                 <CardHeader>
-                  <CardTitle className="text-2xl font-semibold text-primary flex items-center">
-                    <div className="w-2 h-8 bg-gradient-primary rounded-full mr-3" />
+                  <CardTitle className="text-xl sm:text-2xl font-semibold text-primary flex items-center">
+                    <div className="w-2 h-6 sm:h-8 bg-gradient-primary rounded-full mr-3" />
                     Send Message
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <form id="contactForm" action="https://formspree.io/f/mqaaoeee" method="POST" className="space-y-6">
-                    <div className="grid md:grid-cols-2 gap-4">
+                  <form id="contactForm" action="https://formspree.io/f/mqaaoeee" method="POST" className="space-y-4 sm:space-y-6">
+                    <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-foreground">Name</label>
                         <Input
@@ -131,7 +131,7 @@ const Contact = () => {
                         />
                       </div>
                     </div>
-                    <div className="grid md:grid-cols-2 gap-4">
+                    <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-2">
                         <label className="text-sm font-medium text-foreground">Email</label>
                         <Input
@@ -164,7 +164,7 @@ const Contact = () => {
                     </div>
                     <Button
                       type="submit"
-                      className="w-full bg-gradient-primary hover:bg-gradient-accent text-primary-foreground shadow-glow transition-smooth group py-6"
+                      className="w-full bg-gradient-primary hover:bg-gradient-accent text-primary-foreground shadow-glow transition-smooth group py-4 sm:py-6"
                     >
                       Send Message
                       <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -216,7 +216,7 @@ const Contact = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 gap-4">
                     {contactInfo.map((info, index) => (
                       <div 
                         key={info.title}
@@ -247,7 +247,7 @@ const Contact = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {socialLinks.map((social, index) => (
                       <a
                         key={social.name}

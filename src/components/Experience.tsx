@@ -119,17 +119,17 @@ const Experience = () => {
 
         <div className="relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <div className="text-center mb-12 sm:mb-16 animate-slide-up px-4 sm:px-0">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Experience
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               My journey through leadership roles, development projects, and professional experience
             </p>
           </div>
 
           {/* Experience Timeline */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8 px-4 sm:px-0">
             {experiences.map((experience, index) => (
               <Card 
                 key={`${experience.title}-${experience.company}`}
@@ -139,25 +139,27 @@ const Experience = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div className="flex flex-col gap-3 sm:gap-4">
                     <div>
-                      <CardTitle className="text-xl font-semibold group-hover:text-primary transition-smooth flex items-center gap-3">
-                        {experience.title}
+                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                        <CardTitle className="text-lg sm:text-xl font-semibold group-hover:text-primary transition-smooth">
+                          {experience.title}
+                        </CardTitle>
                         {experience.isActualJob && (
-                          <Badge className="bg-primary text-primary-foreground text-xs">
+                          <Badge className="bg-primary text-primary-foreground text-xs w-fit">
                             Professional Role
                           </Badge>
                         )}
-                      </CardTitle>
-                      <p className="text-lg text-primary font-medium mt-1">
+                      </div>
+                      <p className="text-base sm:text-lg text-primary font-medium mt-1">
                         {experience.company}
                       </p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Badge className={getTypeColor(experience.type)}>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                      <Badge className={`${getTypeColor(experience.type)} text-xs sm:text-sm w-fit`}>
                         {experience.type}
                       </Badge>
-                      <span className="text-sm text-muted-foreground font-medium">
+                      <span className="text-xs sm:text-sm text-muted-foreground font-medium">
                         {experience.period}
                       </span>
                     </div>
@@ -165,17 +167,17 @@ const Experience = () => {
                 </CardHeader>
 
                 <CardContent className="space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {experience.description}
                   </p>
 
                   {/* Achievements */}
                   <div>
-                    <h4 className="font-medium mb-3 text-primary">Key Achievements:</h4>
-                    <ul className="space-y-2">
+                    <h4 className="font-medium mb-2 sm:mb-3 text-primary text-sm sm:text-base">Key Achievements:</h4>
+                    <ul className="space-y-1.5 sm:space-y-2">
                       {experience.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex items-center text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0" />
+                        <li key={idx} className="flex items-center text-xs sm:text-sm text-muted-foreground">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2 sm:mr-3 flex-shrink-0" />
                           {achievement}
                         </li>
                       ))}

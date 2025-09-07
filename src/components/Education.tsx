@@ -66,17 +66,17 @@ const Education = () => {
 
         <div className="relative z-10">
           {/* Section Header */}
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 gradient-text">
+          <div className="text-center mb-12 sm:mb-16 animate-slide-up px-4 sm:px-0">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
               Education
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
               My academic journey in electrical and electronics engineering
             </p>
           </div>
 
           {/* Education Cards */}
-          <div className="space-y-8 max-w-4xl mx-auto">
+          <div className="space-y-6 sm:space-y-8 max-w-4xl mx-auto px-4 sm:px-0">
             {education.map((edu, index) => (
               <Card 
                 key={edu.degree}
@@ -86,20 +86,20 @@ const Education = () => {
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardHeader>
-                  <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <div className="flex flex-col gap-3 sm:gap-4">
                     <div className="flex-1">
-                      <CardTitle className="text-xl font-semibold group-hover:text-primary transition-smooth">
+                      <CardTitle className="text-lg sm:text-xl font-semibold group-hover:text-primary transition-smooth">
                         {edu.degree}
                       </CardTitle>
-                      <p className="text-lg text-primary font-medium mt-1">
+                      <p className="text-base sm:text-lg text-primary font-medium mt-1">
                         {edu.institution}
                       </p>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Badge className={getStatusColor(edu.status)}>
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+                      <Badge className={`${getStatusColor(edu.status)} text-xs sm:text-sm w-fit`}>
                         {edu.status}
                       </Badge>
-                      <span className="text-sm text-muted-foreground font-medium">
+                      <span className="text-xs sm:text-sm text-muted-foreground font-medium">
                         {edu.period}
                       </span>
                     </div>
@@ -107,17 +107,17 @@ const Education = () => {
                 </CardHeader>
 
                 <CardContent className="space-y-4">
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {edu.description}
                   </p>
 
                   {/* Key Areas */}
                   <div>
-                    <h4 className="font-medium mb-3 text-primary">Key Areas of Study:</h4>
-                    <div className="grid md:grid-cols-2 gap-2">
+                    <h4 className="font-medium mb-2 sm:mb-3 text-primary text-sm sm:text-base">Key Areas of Study:</h4>
+                    <div className="grid sm:grid-cols-2 gap-2">
                       {edu.highlights.map((highlight, idx) => (
-                        <div key={idx} className="flex items-center text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3 flex-shrink-0" />
+                        <div key={idx} className="flex items-center text-xs sm:text-sm text-muted-foreground">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2 sm:mr-3 flex-shrink-0" />
                           {highlight}
                         </div>
                       ))}

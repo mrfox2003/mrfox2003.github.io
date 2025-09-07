@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent } from "@/components/ui/sheet";
 import ThemeToggle from "@/components/ThemeToggle";
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState("home");
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -102,11 +104,8 @@ const Navigation = () => {
             <Button
               variant="ghost"
               size="sm"
-              className="text-primary"
-              onClick={() => {
-                // Toggle mobile menu (implement if needed)
-                console.log("Mobile menu toggle");
-              }}
+              className="text-primary p-2"
+              onClick={() => setIsMobileMenuOpen(true)}
             >
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -115,6 +114,55 @@ const Navigation = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Sheet */}
+      <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+        <SheetContent side="right" className="w-80 glass border-border/50">
+          <div className="flex flex-col h-full">
+            {/* Mobile Menu Header */}
+            <div className="py-4 border-b border-border/20">
+              <div className="text-2xl font-bold gradient-text">NIRANJAN</div>
+            </div>
+
+            {/* Mobile Navigation Items */}
+            <nav className="flex-1 py-6">
+              <div className="space-y-4">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      scrollToSection(item.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full text-left px-4 py-3 rounded-lg transition-smooth text-lg font-medium ${
+                      activeSection === item.id
+                        ? "bg-primary/10 text-primary border-l-4 border-primary"
+                        : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </nav>
+
+            {/* Mobile Menu Footer */}
+            <div className="py-4 border-t border-border/20 space-y-4">
+              <Button
+                variant="outline"
+                size="lg"
+                className="w-full border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-smooth"
+                onClick={() => {
+                  scrollToSection("contact");
+                  setIsMobileMenuOpen(false);
+                }}
+              >
+                Get In Touch
+              </Button>
+            </div>
+          </div>
+        </SheetContent>
+      </Sheet>
     </nav>
   );
 };
