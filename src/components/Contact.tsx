@@ -229,9 +229,12 @@ const Contact = () => {
                           <div className="flex-1 min-w-0">
                             <h4 className="font-medium text-foreground">{info.title}</h4>
                             {info.title === "Email" ? (
-                              <p className="text-primary font-medium break-words sm:break-normal">
+                              <a
+                                href={`mailto:${info.value}`}
+                                className="text-primary font-medium break-words sm:break-normal hover:underline block cursor-pointer"
+                              >
                                 {info.value}
-                              </p>
+                              </a>
                             ) : (
                               <p className="text-primary font-medium">
                                 {info.value}
@@ -300,4 +303,3 @@ const Contact = () => {
 };
 
 export default Contact;
-
