@@ -23,7 +23,7 @@ const Hero = () => {
             <img
               src={profileImage}
               alt="Niranjan BR"
-              className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full mx-auto mb-4 sm:mb-6 object-cover shadow-elegant animate-pulse-glow border-2 sm:border-4 border-primary/30"
+              className="w-28 h-28 sm:w-36 sm:h-36 md:w-44 md:h-44 lg:w-52 lg:h-52 rounded-full mx-auto mb-4 sm:mb-6 object-cover shadow-elegant animate-pulse-glow border-2 sm:border-4 border-primary/30"
             />
           </div>
 
