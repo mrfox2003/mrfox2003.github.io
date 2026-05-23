@@ -17,7 +17,6 @@ const Skills = () => {
       skills: [
         { name: "Linux", level: 90, description: "System administration, development environment" },
         { name: "Windows Server", level: 85, description: "Enterprise server management" },
-        { name: "MacOS", level: 75, description: "Development and productivity" },
         { name: "WSL", level: 80, description: "Windows Subsystem for Linux integration" }
       ]
     },
@@ -90,23 +89,12 @@ const Skills = () => {
                           <h4 className="font-medium text-foreground text-sm sm:text-base">{skill.name}</h4>
                           <p className="text-xs text-muted-foreground leading-tight">{skill.description}</p>
                         </div>
-                        <div className="text-xs sm:text-sm font-medium text-primary whitespace-nowrap">
-                          {skill.level}%
-                        </div>
                       </div>
                       
                       <div className="relative">
                         <Progress 
                           value={skill.level} 
                           className="h-2 bg-muted"
-                        />
-                        {/* Custom progress bar styling */}
-                        <div 
-                          className={`absolute top-0 left-0 h-2 rounded-full transition-all duration-1000 ease-out ${getSkillColor(skill.level)}`}
-                          style={{ 
-                            width: `${skill.level}%`,
-                            animationDelay: `${categoryIndex * 0.2 + skillIndex * 0.1}s`
-                          }}
                         />
                       </div>
                     </div>
