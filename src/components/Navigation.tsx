@@ -48,70 +48,61 @@ const Navigation = () => {
   ];
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-smooth ${
-        isScrolled
-          ? "glass shadow-elegant backdrop-blur-glass"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="container mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <div
-            className="text-2xl font-bold gradient-text cursor-pointer"
-            onClick={() => scrollToSection("home")}
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none w-full max-w-fit px-4">
+      <div className="flex items-center gap-2 px-3 py-2 rounded-full border border-border/50 shadow-elegant transition-all duration-500 pointer-events-auto glass backdrop-blur-glass bg-background/50 scale-100">
+        {/* Logo/Initials */}
+        <div
+          className="px-3 py-1 text-sm font-bold gradient-text cursor-pointer hover:opacity-80 transition-smooth hidden sm:block"
+          onClick={() => scrollToSection("home")}
+        >
+          NR
+        </div>
+
+        <div className="h-4 w-[1px] bg-border/50 mx-1 hidden sm:block"></div>
+
+        {/* Navigation Items */}
+        <div className="flex items-center gap-1">
+          {navItems.map((item) => (
+            <button
+              key={item.id}
+              onClick={() => scrollToSection(item.id)}
+              className={`px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-300 relative group ${
+                activeSection === item.id
+                  ? "text-primary-foreground"
+                  : "text-muted-foreground hover:text-primary"
+              }`}
+            >
+              {activeSection === item.id && (
+                <div className="absolute inset-0 bg-gradient-primary rounded-full -z-10 animate-in fade-in zoom-in duration-300" />
+              )}
+              <span className="relative z-10">{item.label}</span>
+            </button>
+          ))}
+        </div>
+
+        <div className="h-4 w-[1px] bg-border/50 mx-1"></div>
+
+        {/* Controls */}
+        <div className="flex items-center gap-2">
+          <ThemeToggle />
+          
+          <Button
+            variant="ghost"
+            className="md:hidden p-2 text-primary hover:bg-primary/10 rounded-full"
+            onClick={() => setIsMobileMenuOpen(true)}
           >
-            NIRANJAN
-          </div>
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </Button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`relative px-3 py-2 text-sm font-medium transition-smooth hover:text-primary ${
-                  activeSection === item.id
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {item.label}
-                {activeSection === item.id && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-primary rounded-full" />
-                )}
-              </button>
-            ))}
-          </div>
-
-          {/* Right side controls */}
-          <div className="hidden md:flex items-center space-x-4">
-            <ThemeToggle />
-            <Button
-              variant="outline"
-              size="sm"
-              className="border-primary text-primary hover:bg-primary hover:text-primary-foreground glow transition-smooth"
-              onClick={() => scrollToSection("contact")}
-            >
-              Get In Touch
-            </Button>
-          </div>
-
-          {/* Mobile controls */}
-          <div className="md:hidden flex items-center space-x-2">
-            <ThemeToggle />
-            <Button
-              variant="ghost"
-              size="sm"
-              className="text-primary p-2"
-              onClick={() => setIsMobileMenuOpen(true)}
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </Button>
-          </div>
+          <Button
+            variant="outline"
+            className="hidden md:flex h-8 border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground rounded-full text-xs"
+            onClick={() => scrollToSection("contact")}
+          >
+            Connect
+          </Button>
         </div>
       </div>
 
