@@ -48,20 +48,20 @@ const Navigation = () => {
   ];
 
   return (
-    <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none w-full max-w-fit px-4">
+    <nav className="fixed top-6 right-6 md:right-auto md:left-1/2 md:-translate-x-1/2 z-50 pointer-events-none w-full max-w-fit md:px-4">
       <div className="flex items-center gap-2 px-3 py-2 rounded-full border border-border/50 shadow-elegant transition-all duration-500 pointer-events-auto glass backdrop-blur-glass bg-background/50 scale-100">
-        {/* Logo/Initials */}
+        {/* Logo/Initials - Desktop only */}
         <div
-          className="px-3 py-1 text-sm font-bold gradient-text cursor-pointer hover:opacity-80 transition-smooth hidden sm:block"
+          className="px-3 py-1 text-sm font-bold gradient-text cursor-pointer hover:opacity-80 transition-smooth hidden md:block"
           onClick={() => scrollToSection("home")}
         >
           NR
         </div>
 
-        <div className="h-4 w-[1px] bg-border/50 mx-1 hidden sm:block"></div>
+        <div className="h-4 w-[1px] bg-border/50 mx-1 hidden md:block"></div>
 
-        {/* Navigation Items */}
-        <div className="flex items-center gap-1">
+        {/* Navigation Items - Desktop */}
+        <div className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
             <button
               key={item.id}
@@ -80,15 +80,17 @@ const Navigation = () => {
           ))}
         </div>
 
-        <div className="h-4 w-[1px] bg-border/50 mx-1"></div>
+        <div className="hidden md:block h-4 w-[1px] bg-border/50 mx-1"></div>
 
         {/* Controls */}
         <div className="flex items-center gap-2">
-          <ThemeToggle />
+          <div className="hidden md:block">
+            <ThemeToggle />
+          </div>
           
           <Button
             variant="ghost"
-            className="md:hidden p-2 text-primary hover:bg-primary/10 rounded-full"
+            className="p-2 text-primary hover:bg-primary/10 rounded-full md:hidden"
             onClick={() => setIsMobileMenuOpen(true)}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
