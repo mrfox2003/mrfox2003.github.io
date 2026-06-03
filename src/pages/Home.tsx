@@ -2,7 +2,7 @@ const Home = () => (
   <section className="min-h-screen flex flex-col items-center justify-center text-center">
     <div className="mb-8">
       <img
-        src={require("@/assets/niranjan-profile.jpg")}
+        src={require("@/assets/niranjan.png")}
         alt="Niranjan BR"
         className="w-64 h-64 md:w-80 md:h-80 rounded-full mx-auto object-cover shadow-elegant border-4 border-primary/30"
       />

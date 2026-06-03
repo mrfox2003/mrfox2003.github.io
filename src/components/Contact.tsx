@@ -1,306 +1,210 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useToast } from "@/hooks/use-toast";
-import { Mail, MapPin, Github, Linkedin, Twitter, Send } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Mail, Github, Linkedin, MessageSquare, Send, MapPin } from 'lucide-react';
+import { Card } from './ui/Card';
+import { Button } from './ui/Button';
+import { portfolioData } from '../data/portfolio';
+import { staggerReveal } from '../lib/animations';
+import { useToast } from '../hooks/use-toast';
 
-const Contact = () => {
+export const Contact = () => {
+  const { socialLinks, personalInfo } = portfolioData;
+  const { toast } = useToast();
+  
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    subject: "",
-    message: ""
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  useEffect(() => {
+    staggerReveal('.contact-reveal', 100);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      toast({
+        title: "Missing fields",
+        description: "Please fill in all required fields.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Simulate API request submission
+    await new Promise(resolve => setTimeout(resolve, 1200));
 
     toast({
       title: "Message Sent!",
-      description: "Thanks for reaching out. I'll get back to you soon!",
+      description: `Thank you, ${formData.name}. Niranjan will get back to you soon.`,
     });
 
-    setFormData({ name: "", email: "", subject: "", message: "" });
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: ''
+    });
     setIsSubmitting(false);
   };
 
-  const contactInfo = [
+  const contactMethods = [
     {
-      icon: <Mail className="w-6 h-6" />,
-      title: "Email",
-      value: "niranjankannan2003@gmail.com",
-      description: "Get in touch for collaborations"
+      icon: <Mail className="w-5 h-5" />,
+      label: 'Email',
+      value: personalInfo.email,
+      href: `mailto:${personalInfo.email}`,
+      color: 'text-brand-violet',
+      bg: 'bg-brand-violet/5'
     },
     {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Location",
-      value: "Kerala, India",
-      description: "Open to remote opportunities"
-    }
-  ];
-
-  const socialLinks = [
-    {
-      name: "GitHub",
-      icon: <Github className="w-8 h-8 mx-auto" />,
-      url: "https://github.com/mrfox2003",
-      description: "View my code repositories"
+      icon: <Linkedin className="w-5 h-5" />,
+      label: 'LinkedIn',
+      value: 'connect with me',
+      href: socialLinks.linkedin,
+      color: 'text-blue-500',
+      bg: 'bg-blue-50'
     },
     {
-      name: "LinkedIn",
-      icon: <Linkedin className="w-8 h-8 mx-auto" />,
-      url: "https://www.linkedin.com/in/niranjanbr2003/",
-      description: "Professional network"
-    },
-    {
-      name: "Twitter",
-      icon: <Twitter className="w-8 h-8 mx-auto" />,
-      url: "https://twitter.com/mrfox2003",
-      description: "Tech discussions and updates"
-    },
-    {
-      name: "Telegram",
-      icon: <Send className="w-8 h-8 mx-auto" />,
-      url: "https://t.me/mrfox2003",
-      description: "Quick messaging"
+      icon: <Github className="w-5 h-5" />,
+      label: 'GitHub',
+      value: 'explore my repositories',
+      href: socialLinks.github,
+      color: 'text-brand-navy',
+      bg: 'bg-brand-navy/5'
     }
   ];
 
   return (
-    <section id="contact" className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/3 right-10 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/3 left-10 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+    <section id="contact" className="py-24 bg-transparent">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+        <div className="flex flex-col items-center mb-16 text-center">
+          <h2 className="contact-reveal text-3xl md:text-4xl font-extrabold text-brand-navy mb-4 font-sans">
+            Get In Touch
+          </h2>
+          <p className="contact-reveal text-brand-text-secondary max-w-xl mx-auto">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+          </p>
+          <div className="contact-reveal w-16 h-1 bg-brand-green rounded-full mt-6"></div>
         </div>
 
-        <div className="relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-16 animate-slide-up px-4 sm:px-0">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
-              Get In Touch
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              Have a project in mind or want to collaborate? I'd love to hear from you!
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 px-4 sm:px-0">
-            <div className="space-y-6 sm:space-y-8">
-              {/* Contact Form */}
-              <Card className="glass shadow-elegant border-border/50 animate-slide-in-left">
-                <CardHeader>
-                  <CardTitle className="text-xl sm:text-2xl font-semibold text-primary flex items-center">
-                    <div className="w-2 h-6 sm:h-8 bg-gradient-primary rounded-full mr-3" />
-                    Send Message
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form id="contactForm" action="https://formspree.io/f/mqaaoeee" method="POST" className="space-y-4 sm:space-y-6">
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Name</label>
-                        <Input
-                          name="fname"
-                          placeholder="Your name"
-                          required
-                          className="glass border-primary/30 focus:border-primary"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Phone</label>
-                        <Input
-                          name="phone"
-                          type="number"
-                          placeholder="Your number"
-                          required
-                          className="glass border-primary/30 focus:border-primary"
-                        />
-                      </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto">
+          {/* Contact Details */}
+          <div className="lg:col-span-5 space-y-6">
+            <h3 className="contact-reveal text-2xl font-bold text-brand-navy mb-8 font-sans">
+              Contact Information
+            </h3>
+            
+            <div className="space-y-4">
+              {contactMethods.map((method, index) => (
+                <a 
+                  key={index} 
+                  href={method.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="contact-reveal block"
+                >
+                  <Card className="flex items-center gap-6 border-brand-border/40 hover:border-brand-violet/20 group">
+                    <div className={`p-4 ${method.bg} ${method.color} rounded-xl group-hover:scale-110 transition-transform`}>
+                      {method.icon}
                     </div>
-                    <div className="grid sm:grid-cols-2 gap-4">
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Email</label>
-                        <Input
-                          name="email"
-                          type="email"
-                          placeholder="Your email"
-                          required
-                          className="glass border-primary/30 focus:border-primary"
-                        />
-                      </div>
-                      <div className="space-y-2">
-                        <label className="text-sm font-medium text-foreground">Subject</label>
-                        <Input
-                          name="subject"
-                          placeholder="Your subject"
-                          required
-                          className="glass border-primary/30 focus:border-primary"
-                        />
-                      </div>
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-medium text-foreground">Message</label>
-                      <Textarea
-                        name="message"
-                        placeholder="Your message"
-                        rows={6}
-                        required
-                        className="glass border-primary/30 focus:border-primary resize-none"
-                      />
-                    </div>
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-primary hover:bg-gradient-accent text-primary-foreground shadow-glow transition-smooth group py-4 sm:py-6"
-                    >
-                      Send Message
-                      <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                    </Button>
-                  </form>
-                </CardContent>
-              </Card>
-
-              {/* Resume Card Block */}
-              <Card className="glass shadow-elegant border-border/50">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-primary flex items-center">
-                    <div className="w-2 h-6 bg-gradient-primary rounded-full mr-3" />
-                    Resume
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex gap-4">
-                    <a
-                      href="/resume.pdf"
-                      download
-                      className="px-4 py-2 bg-primary text-primary-foreground rounded hover:bg-primary/80 transition-smooth"
-                    >
-                      Download Resume
-                    </a>
-                    <a
-                      href="/resume.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-4 py-2 bg-secondary text-secondary-foreground rounded hover:bg-secondary/80 transition-smooth"
-                    >
-                      View Resume
-                    </a>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            {/* Contact Info & Social Links */}
-            <div className="space-y-8 animate-slide-in-right">
-              {/* Contact Information */}
-              <Card className="glass shadow-elegant border-border/50">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-primary flex items-center">
-                    <div className="w-2 h-6 bg-gradient-primary rounded-full mr-3" />
-                    Contact Information
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 gap-4">
-                    {contactInfo.map((info, index) => (
-                      <div 
-                        key={info.title}
-                        className="p-4 rounded-lg glass border border-primary/10 transition-smooth hover:border-primary/30 group"
-                      >
-                        <div className="flex items-start space-x-3">
-                          <div className="text-2xl group-hover:scale-110 transition-transform">
-                            {info.icon}
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="font-medium text-foreground">{info.title}</h4>
-                            {info.title === "Email" ? (
-                              <a
-                                href={`mailto:${info.value}`}
-                                className="text-primary font-medium break-words sm:break-normal hover:underline block cursor-pointer"
-                              >
-                                {info.value}
-                              </a>
-                            ) : (
-                              <p className="text-primary font-medium">
-                                {info.value}
-                              </p>
-                            )}
-                            <p className="text-xs text-muted-foreground">{info.description}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Social Links */}
-              <Card className="glass shadow-elegant border-border/50">
-                <CardHeader>
-                  <CardTitle className="text-xl font-semibold text-primary flex items-center">
-                    <div className="w-2 h-6 bg-gradient-primary rounded-full mr-3" />
-                    Connect With Me
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {socialLinks.map((social, index) => (
-                      <a
-                        key={social.name}
-                        href={social.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-4 rounded-lg glass border border-primary/10 transition-smooth hover:border-primary/30 hover:shadow-glow group text-center block"
-                      >
-                        <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">
-                          {social.icon}
-                        </div>
-                        <h4 className="font-medium text-foreground group-hover:text-primary transition-smooth">
-                          {social.name}
-                        </h4>
-                        <p className="text-xs text-muted-foreground">{social.description}</p>
-                      </a>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Availability Status */}
-              <Card className="glass shadow-elegant border-border/50">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-success rounded-full animate-pulse" />
                     <div>
-                      <p className="font-medium text-foreground">Available for Projects</p>
-                      <p className="text-sm text-muted-foreground">
-                        Open to new opportunities and collaborations
+                      <p className="text-[12px] font-extrabold text-brand-text-secondary uppercase tracking-widest mb-1">
+                        {method.label}
+                      </p>
+                      <p className="text-[15px] font-bold text-brand-navy">
+                        {method.value}
                       </p>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </Card>
+                </a>
+              ))}
+
+              <div className="contact-reveal mt-12 p-8 rounded-brand-card bg-brand-navy text-white relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16" />
+                <div className="relative z-10">
+                  <h4 className="text-xl font-bold mb-4 font-sans flex items-center gap-2">
+                    <MapPin className="w-5 h-5 text-brand-green" />
+                    Current Location
+                  </h4>
+                  <p className="text-white/70 text-[15px] leading-relaxed">
+                    Based in Kerala, India.
+                  </p>
+                </div>
+              </div>
             </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="lg:col-span-7">
+            <Card className="h-full p-8 md:p-10 border-brand-border/40">
+              <form className="space-y-6" onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="contact-reveal space-y-2">
+                    <label className="text-[13px] font-extrabold text-brand-navy uppercase tracking-wider">Full Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="John Doe"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-5 py-4 bg-white/35 backdrop-blur-sm border border-brand-border/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-violet/20 focus:border-brand-violet/40 focus:bg-white/60 transition-all font-sans"
+                      required
+                    />
+                  </div>
+                  <div className="contact-reveal space-y-2">
+                    <label className="text-[13px] font-extrabold text-brand-navy uppercase tracking-wider">Email Address</label>
+                    <input 
+                      type="email" 
+                      placeholder="john@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-5 py-4 bg-white/35 backdrop-blur-sm border border-brand-border/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-violet/20 focus:border-brand-violet/40 focus:bg-white/60 transition-all font-sans"
+                      required
+                    />
+                  </div>
+                </div>
+
+                <div className="contact-reveal space-y-2">
+                  <label className="text-[13px] font-extrabold text-brand-navy uppercase tracking-wider">Subject</label>
+                  <input 
+                    type="text" 
+                    placeholder="Project Inquiry"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="w-full px-5 py-4 bg-white/35 backdrop-blur-sm border border-brand-border/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-violet/20 focus:border-brand-violet/40 focus:bg-white/60 transition-all font-sans"
+                  />
+                </div>
+
+                <div className="contact-reveal space-y-2">
+                  <label className="text-[13px] font-extrabold text-brand-navy uppercase tracking-wider">Message</label>
+                  <textarea 
+                    rows={5}
+                    placeholder="Tell me more about your project..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    className="w-full px-5 py-4 bg-white/35 backdrop-blur-sm border border-brand-border/40 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-violet/20 focus:border-brand-violet/40 focus:bg-white/60 transition-all resize-none font-sans"
+                    required
+                  ></textarea>
+                </div>
+
+                <Button 
+                  variant="primary" 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="contact-reveal w-full flex items-center justify-center gap-3 py-4 shadow-brand-card hover:shadow-brand-card-hover group"
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                  {!isSubmitting && <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                </Button>
+              </form>
+            </Card>
           </div>
         </div>
       </div>
     </section>
   );
 };
-
-export default Contact;

@@ -1,315 +1,139 @@
-/* Pointer-following blurred blob */
-#pointer-blob {
-  position: fixed;
-  top: 0; left: 0;
-  width: 120px; height: 120px;
-  pointer-events: none;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(100,149,237,0.25) 60%, rgba(100,149,237,0.05) 100%);
-  filter: blur(32px);
-  opacity: 0.7;
-  z-index: 9999;
-  transition: none;
-}
-/* Blurred Gradient Background Utility */
-.bg-blur-gradient {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  background: var(--background);
-  overflow: hidden;
-}
-
-.bg-blur-gradient .blob {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.7;
-  pointer-events: none;
-  will-change: filter, opacity, transform;
-}
-
-.bg-blur-gradient .blob-top-left {
-  width: 320px; height: 320px;
-  top: -40px; left: -80px;
-  background: var(--blob-top-left-bg);
-  filter: blur(40px);
-  opacity: 0.6;
-}
-
-.bg-blur-gradient .blob-center-right {
-  width: 380px; height: 380px;
-  top: 40px; right: -60px;
-  background: var(--blob-center-right-bg);
-  filter: blur(60px);
-  opacity: 0.6;
-}
-
-.bg-blur-gradient .blob-bottom-right {
-  width: 340px; height: 340px;
-  bottom: -40px; right: -80px;
-  background: var(--blob-bottom-right-bg);
-  filter: blur(40px);
-  opacity: 0.6;
-}
-
-@media (max-width: 768px) {
-  .bg-blur-gradient .blob-top-left { width: 160px; height: 160px; filter: blur(24px); }
-  .bg-blur-gradient .blob-center-right { width: 180px; height: 180px; filter: blur(32px); }
-  .bg-blur-gradient .blob-bottom-right { width: 140px; height: 140px; filter: blur(20px); }
-}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Niranjan's Modern Minimalist Portfolio Design System
-All colors MUST be HSL for consistent theming.
-*/
-
 @layer base {
-  :root {
-    /* Light mode - Minimal with subtle contrast */
-    --background: 0 0% 98%;
-    --foreground: 0 0% 5%;
-
-    /* Card backgrounds */
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 5%;
-
-    /* Popover styling */
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 5%;
-
-    /* Crimson red primary theme */
-    --primary: 0 84% 60%;
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 0 84% 70%;
-    --primary-dark: 0 84% 50%;
-
-    /* Secondary grays for subtle elements */
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 9%;
-
-    /* Muted elements for less emphasis */
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
-
-    /* Accent colors for highlights */
-    --accent: 0 84% 60%;
-    --accent-foreground: 0 0% 98%;
-
-    /* Status colors */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --success: 142 76% 36%;
-    --success-foreground: 0 0% 98%;
-
-    /* Border and input styling */
-    --border: 0 0% 90%;
-    --input: 0 0% 96%;
-    --ring: 0 84% 60%;
-
-    /* Design system properties */
-    --radius: 0.75rem;
-
-    /* Custom gradients for light mode */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 98%), hsl(0 0% 94%));
-    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 70%));
-    --gradient-accent: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 100% / 0.9), hsl(0 0% 98% / 0.95));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 98%), hsl(0 0% 94%));
-
-    /* Blob colors for light mode */
-    --blob-top-left-bg: radial-gradient(circle, hsl(200 100% 90%) 60%, hsl(210 100% 80%) 100%);
-    --blob-center-right-bg: radial-gradient(circle, hsl(0 84% 80%) 60%, hsl(0 84% 70%) 100%);
-    --blob-bottom-right-bg: radial-gradient(circle, hsl(0 0% 95%) 60%, hsl(0 0% 85%) 100%);
-
-    /* Glass morphism effects for light mode */
-    --glass-bg: hsl(0 0% 100% / 0.8);
-    --glass-border: hsl(0 0% 5% / 0.1);
-    --glass-backdrop: blur(40px);
-
-    /* Shadows and glows for light mode */
-    --shadow-elegant: 0 20px 40px -10px hsl(0 0% 5% / 0.15);
-    --shadow-glow: 0 0 40px hsl(0 84% 60% / 0.25);
-    --shadow-accent: 0 10px 30px hsl(0 84% 60% / 0.2);
-
-    /* Smooth animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 0 0% 5%;
-    --sidebar-primary: 0 84% 60%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 96%;
-    --sidebar-accent-foreground: 0 0% 9%;
-    --sidebar-border: 0 0% 90%;
-    --sidebar-ring: 0 84% 60%;
+  body {
+    @apply bg-brand-bg-primary text-brand-text-primary antialiased selection:bg-brand-violet/20 selection:text-brand-navy font-sans;
   }
 
-  .dark {
-    /* Dark mode - Matte black with crimson red accents */
-    --background: 0 0% 3%;
-    --foreground: 0 0% 95%;
-
-    /* Card backgrounds with matte finish */
-    --card: 0 0% 6%;
-    --card-foreground: 0 0% 95%;
-
-    /* Popover styling */
-    --popover: 0 0% 6%;
-    --popover-foreground: 0 0% 95%;
-
-    /* Crimson red primary theme */
-    --primary: 0 84% 60%;
-    --primary-foreground: 0 0% 98%;
-    --primary-glow: 0 84% 70%;
-    --primary-dark: 0 84% 50%;
-
-    /* Secondary dark grays for subtle elements */
-    --secondary: 0 0% 9%;
-    --secondary-foreground: 0 0% 90%;
-
-    /* Muted elements for less emphasis */
-    --muted: 0 0% 8%;
-    --muted-foreground: 0 0% 60%;
-
-    /* Accent colors for highlights */
-    --accent: 0 84% 60%;
-    --accent-foreground: 0 0% 95%;
-
-    /* Status colors */
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 95%;
-    --success: 142 76% 50%;
-    --success-foreground: 0 0% 95%;
-
-    /* Border and input styling */
-    --border: 0 0% 15%;
-    --input: 0 0% 10%;
-    --ring: 0 84% 60%;
-
-    /* Custom gradients for dark mode - matte black with red */
-    --gradient-hero: linear-gradient(135deg, hsl(0 0% 3%), hsl(0 0% 6%));
-    --gradient-primary: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 70%));
-    --gradient-accent: linear-gradient(135deg, hsl(0 84% 60%), hsl(0 84% 50%));
-    --gradient-card: linear-gradient(135deg, hsl(0 0% 6% / 0.8), hsl(0 0% 9% / 0.9));
-    --gradient-subtle: linear-gradient(180deg, hsl(0 0% 3%), hsl(0 0% 5%));
-
-    /* Blob colors for dark mode */
-    --blob-top-left-bg: radial-gradient(circle, #eaf6ff 60%, #b3cfff 100%);
-    --blob-center-right-bg: radial-gradient(circle, #3a2e7b 60%, #1a1a40 100%);
-    --blob-bottom-right-bg: radial-gradient(circle, #f8f8fa 60%, #a0a0a0 100%);
-
-    /* Glass morphism effects - matte black */
-    --glass-bg: hsl(0 0% 8% / 0.4);
-    --glass-border: hsl(0 84% 60% / 0.2);
-
-    /* Shadows and glows - red accent */
-    --shadow-elegant: 0 20px 40px -10px hsl(0 0% 0% / 0.6);
-    --shadow-glow: 0 0 40px hsl(0 84% 60% / 0.4);
-    --shadow-accent: 0 10px 30px hsl(0 84% 60% / 0.3);
-
-    --sidebar-background: 0 0% 3%;
-    --sidebar-foreground: 0 0% 95%;
-    --sidebar-primary: 0 84% 60%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 0 0% 9%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 0 0% 15%;
-    --sidebar-ring: 0 84% 60%;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply tracking-tight font-sans font-bold text-brand-navy;
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
+/* Glassmorphism Navigation */
+.navbar-blur {
+  background-color: rgba(248, 249, 251, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8F9FB;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E5E7EB;
+  border-radius: 999px;
+  border: 2px solid #F8F9FB;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D1D5DB;
+}
+
+/* Print Overrides for Resume Generation */
+@media print {
+
+  /* Reset document and viewport scroll limits across all parents to prevent page clipping */
+  html,
+  body,
+  #root,
+  #root>div {
+    background: white !important;
+    color: black !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: static !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  body {
-    @apply bg-background text-foreground overflow-x-hidden;
-    background: var(--gradient-hero);
-    min-height: 100vh;
+  /* Hide the entire website contents and page-level background blocks */
+  header,
+  footer,
+  main,
+  .no-print {
+    display: none !important;
+    visibility: hidden !important;
   }
 
-  /* Smooth scrolling for the whole page */
-  html {
-    scroll-behavior: smooth;
+  /* Strip absolute positioning and scroll constraints from the modal wrapper */
+  .print-modal-wrapper {
+    position: static !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+    display: block !important;
+    padding: 0 !important;
+    z-index: auto !important;
   }
 
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
+  /* Allow modal container card to be static and take natural height without scroll constraints */
+  .print-modal-content {
+    position: static !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    height: auto !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    border-radius: 0 !important;
   }
 
-  ::-webkit-scrollbar-track {
-    @apply bg-muted;
+  /* Scale the resume sheet to fill the printed page naturally with safe margins */
+  .printable-resume-sheet {
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 2.2cm 2cm !important;
+    /* Premium margins (approx 0.85 in top/bottom, 0.8 in left/right) */
+    margin: 0 auto !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: white !important;
+    font-size: 10.5pt !important;
+    /* Slightly smaller base font for perfect fit on single/multiple pages */
+    line-height: 1.4 !important;
   }
 
-  ::-webkit-scrollbar-thumb {
-    background: var(--gradient-primary);
-    border-radius: 4px;
+  /* Ensure all nested typography inherits natural print rendering */
+  .printable-resume-sheet text,
+  .printable-resume-sheet p,
+  .printable-resume-sheet h1,
+  .printable-resume-sheet h2,
+  .printable-resume-sheet h3,
+  .printable-resume-sheet h4,
+  .printable-resume-sheet span,
+  .printable-resume-sheet li {
+    color: black !important;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
-    @apply bg-primary;
+  /* Clean print page borders and scaling guidelines */
+  @page {
+    margin: 0 !important;
+    /* Let CSS padding handle all page margins precisely and consistently across browsers */
+    size: portrait;
   }
+}
 
-  /* Glass morphism utility class */
-  .glass {
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-backdrop);
-    border: 1px solid var(--glass-border);
-  }
-
-  /* Glow effect utility */
-  .glow {
-    box-shadow: var(--shadow-glow);
-  }
-
-  /* Text glow for headings */
-  .text-glow {
-    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
-  }
-
-  /* Smooth transitions */
-  .transition-smooth {
-    transition: var(--transition-smooth);
-  }
-
-  .transition-bounce {
-    transition: var(--transition-bounce);
-  }
-
-  /* Gradient text */
-  .gradient-text {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  /* Floating animation */
-  @keyframes float {
-    0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  /* Pulse glow animation */
-  @keyframes pulseGlow {
-    0%, 100% { 
-      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
-    }
-    50% { 
-      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
-    }
-  }
-
-  .animate-pulse-glow {
-    animation: pulseGlow 3s ease-in-out infinite;
-  }
+/* Floating Blob Animation Hooks */
+.floating-element {
+  will-change: transform;
 }

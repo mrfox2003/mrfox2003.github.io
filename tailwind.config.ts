@@ -67,12 +67,30 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				brand: {
+					navy: '#001221',
+					green: '#3DCD58',
+					violet: '#7C6EF6',
+					peach: '#FFBABA',
+					'bg-primary': '#F8F9FB',
+					'bg-secondary': '#FFFFFF',
+					'text-primary': '#111827',
+					'text-secondary': '#6B7280',
+					'text-muted': '#9CA3AF',
+					border: '#E5E7EB'
 				}
+			},
+			fontFamily: {
+				sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				'brand-card': '20px',
+				'brand-btn': '14px',
+				'brand-input': '12px',
 			},
 			backgroundImage: {
 				'gradient-hero': 'var(--gradient-hero)',
@@ -87,7 +105,13 @@ export default {
 			boxShadow: {
 				'elegant': 'var(--shadow-elegant)',
 				'glow': 'var(--shadow-glow)',
-				'accent': 'var(--shadow-accent)'
+				'accent': 'var(--shadow-accent)',
+				'brand-card': '0 8px 24px rgba(0, 0, 0, 0.04)',
+				'brand-card-hover': '0 16px 32px rgba(0, 0, 0, 0.06)',
+				'brand-modal': '0 24px 60px rgba(0, 0, 0, 0.12)',
+			},
+			spacing: {
+				120: '120px',
 			},
 			keyframes: {
 				'accordion-down': {

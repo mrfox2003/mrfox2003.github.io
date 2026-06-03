@@ -1,196 +1,93 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import React, { useEffect } from 'react';
+import { Briefcase, Calendar, MapPin } from 'lucide-react';
+import { portfolioData } from '../data/portfolio';
+import { staggerReveal } from '../lib/animations';
 
-const Experience = () => {
-  const experiences = [
-    {
-      title: "Operation/Media Lead",
-      company: "CGPC, GEC Idukki",
-      period: "2025 – Present",
-      description: "Spearheaded media and operational efforts for the college placement cell. Implemented communication strategies and organized career-focused events, increasing student participation and placements.",
-      type: "leadership",
-      achievements: [
-        "Implemented effective communication strategies",
-        "Organized career-focused events",
-        "Increased student participation and placements"
-      ]
-    },
-    {
-      title: "Chairperson",
-      company: "IEEE RAS SBC, GEC Idukki",
-      period: "2025 – Present",
-      description: "Provided strategic leadership and oversight for chapter activities.Strengthened organizational visibility and fostered collaboration within the technical community.",
-      type: "leadership",
-      achievements: [
-        "Led 10+ technical events",
-        "40% increase in participation",
-        "Leadership and event management"
-      ]
-    },
-    {
-      title: "Technical Coordinator",
-      company: "IEEE RAS SBC, GEC Idukki",
-      period: "2024 – 2025",
-      description: "Organized 6+ events attended by 100+ students. Oversaw logistics and technical setups.",
-      type: "technical",
-      achievements: [
-        "Organized 6+ events with 100+ attendees",
-        "Managed logistics and technical setups",
-        "Coordination and planning expertise"
-      ]
-    },
-    {
-      title: "Custom ROM Developer",
-      company: "Voltage OS Project",
-      period: "2021 – Present",
-      description: "Delivered 30+ OTA builds for Qualcomm devices with 1000+ downloads. Reduced build failure rate by 30% through device tree and kernel optimizations.",
-      type: "development",
-      achievements: [
-        "30+ OTA builds delivered",
-        "1000+ downloads achieved",
-        "30% reduction in build failure rate"
-      ]
-    },
-    {
-      title: "Solar Technician",
-      company: "Lifestyles, Kollam",
-      period: "Jan 2023 – Jul 2023",
-      description: "Installed and tested 20+ solar systems in homes and businesses. Achieved 98% first-time fix rate on inverter and battery setups. Conducted client training, improving customer satisfaction.",
-      type: "professional",
-      isActualJob: true,
-      achievements: [
-        "Installed and tested 20+ solar systems",
-        "98% first-time fix rate achieved",
-        "Client training and satisfaction improvement"
-      ]
-    },
-    {
-      title: "Site Engineer",
-      company: "Connectline Business Solutions Pvt. Ltd, Ernakulam",
-      period: "Aug 2022 – Jan 2023",
-      description: "Maintained 12+ telecom towers with 99% uptime. Resolved faults in under 2 hours on average, minimizing downtime. Ensured safety compliance and prepared technical reports.",
-      type: "professional",
-      isActualJob: true,
-      achievements: [
-        "Maintained 12+ telecom towers with 99% uptime",
-        "Average fault resolution under 2 hours",
-        "Safety compliance and technical reporting"
-      ]
-    },
-    {
-      title: "Industrial Training",
-      company: "KSEB, Koorkkenchery, Thrissur",
-      period: "Sep 2024",
-      description: "Completed 1-week training in substation monitoring, transmission lines, and fault handling. Observed load management and relay operations at the 110kV substation.",
-      type: "training",
-      achievements: [
-        "Substation monitoring expertise",
-        "Transmission line knowledge",
-        "110kV substation operations understanding"
-      ]
-    }
-  ];
+export const Experience = () => {
+  const { experiences } = portfolioData;
 
-  const getTypeColor = (type: string) => {
-    switch (type) {
-      case "professional":
-        return "bg-primary text-primary-foreground";
-      case "development":
-        return "bg-accent text-accent-foreground";
-      case "leadership":
-        return "bg-success text-success-foreground";
-      case "technical":
-        return "bg-primary-glow text-primary-foreground";
-      case "training":
-        return "bg-muted text-muted-foreground";
-      default:
-        return "bg-muted text-muted-foreground";
-    }
-  };
+  useEffect(() => {
+    staggerReveal('.exp-reveal', 100);
+  }, []);
 
   return (
-    <section id="experience" className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/3 left-10 w-72 h-72 bg-accent/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/3 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+    <section id="experience" className="py-24 bg-transparent">
+      <div className="max-w-[1000px] mx-auto px-6 md:px-8">
+        <div className="flex flex-col items-center mb-16 text-center">
+          <h2 className="exp-reveal text-3xl md:text-4xl font-extrabold text-brand-navy mb-4 font-sans">
+            Work Experience
+          </h2>
+          <div className="exp-reveal w-16 h-1 bg-brand-green rounded-full"></div>
         </div>
 
-        <div className="relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-16 animate-slide-up px-4 sm:px-0">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
-              Experience
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              My journey through leadership roles, development projects, and professional experience
-            </p>
-          </div>
+        <div className="space-y-12">
+          {experiences.map((exp, index) => (
+            <div key={index} className="exp-reveal relative pl-8 md:pl-0">
+              {/* Timeline Line (for larger screens) */}
+              <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-brand-border -translate-x-1/2" />
+              
+              <div className={`flex flex-col md:flex-row items-center gap-8 ${index % 2 === 0 ? 'md:flex-row-reverse' : ''}`}>
+                
+                {/* Visual Dot on Timeline */}
+                <div className="absolute md:static left-0 top-0 md:top-auto w-4 h-4 rounded-full border-4 border-white bg-brand-green shadow-sm z-10 md:translate-x-0" />
 
-          {/* Experience Timeline */}
-          <div className="space-y-6 sm:space-y-8 px-4 sm:px-0">
-            {experiences.map((experience, index) => (
-              <Card 
-                key={`${experience.title}-${experience.company}`}
-                className={`glass shadow-elegant border-border/50 transition-smooth hover:shadow-glow group ${
-                  experience.isActualJob ? 'ring-2 ring-primary/30' : ''
-                }`}
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardHeader>
-                  <div className="flex flex-col gap-3 sm:gap-4">
-                    <div>
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-                        <CardTitle className="text-lg sm:text-xl font-semibold group-hover:text-primary transition-smooth">
-                          {experience.title}
-                        </CardTitle>
-                        {experience.isActualJob && (
-                          <Badge className="bg-primary text-primary-foreground text-xs w-fit">
-                            Professional Role
-                          </Badge>
-                        )}
-                      </div>
-                      <p className="text-base sm:text-lg text-primary font-medium mt-1">
-                        {experience.company}
-                      </p>
-                    </div>
-                    <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
-                      <Badge className={`${getTypeColor(experience.type)} text-xs sm:text-sm w-fit`}>
-                        {experience.type}
-                      </Badge>
-                      <span className="text-xs sm:text-sm text-muted-foreground font-medium">
-                        {experience.period}
-                      </span>
-                    </div>
+                {/* Content Card */}
+                <div className="w-full md:w-[45%] bg-white/40 backdrop-blur-xl border border-white/50 rounded-brand-card p-6 shadow-brand-card hover:shadow-brand-card-hover hover:-translate-y-1 hover:border-white/95 transition-all duration-300">
+                  <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+                    <h3 className="text-xl font-bold text-brand-navy font-sans">{exp.role}</h3>
+                    <span className="px-3 py-1 bg-brand-violet/10 text-brand-violet text-[11px] font-bold uppercase tracking-wider rounded-full">
+                      {exp.type}
+                    </span>
                   </div>
-                </CardHeader>
-
-                <CardContent className="space-y-4">
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                    {experience.description}
-                  </p>
-
-                  {/* Achievements */}
-                  <div>
-                    <h4 className="font-medium mb-2 sm:mb-3 text-primary text-sm sm:text-base">Key Achievements:</h4>
-                    <ul className="space-y-1.5 sm:space-y-2">
-                      {experience.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex items-center text-xs sm:text-sm text-muted-foreground">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mr-2 sm:mr-3 flex-shrink-0" />
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
+                  
+                  <div className="flex items-center gap-4 text-brand-text-secondary text-[13px] mb-6">
+                    <span className="flex items-center gap-1.5 font-bold text-brand-navy">
+                      <Briefcase className="w-3.5 h-3.5 text-brand-green" />
+                      {exp.company}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Calendar className="w-3.5 h-3.5" />
+                      {exp.period}
+                    </span>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+
+                  <ul className="space-y-3">
+                    {exp.achievements.map((achievement, aIdx) => (
+                      <li key={aIdx} className="flex items-start gap-3 text-[14px] leading-relaxed text-brand-text-secondary">
+                        <span className="w-1.5 h-1.5 rounded-full bg-brand-green mt-2 shrink-0" />
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+
+                  {(exp.location || exp.techStack) && (
+                    <div className="mt-6 pt-5 border-t border-brand-border/60 flex flex-wrap gap-4">
+                      {exp.location && (
+                        <span className="flex items-center gap-1.5 text-[11px] font-bold text-brand-navy/60 uppercase tracking-wide">
+                          <MapPin className="w-3 h-3" />
+                          {exp.location}
+                        </span>
+                      )}
+                      {exp.techStack && (
+                        <div className="flex flex-wrap gap-2">
+                          {exp.techStack.map((tech, tIdx) => (
+                            <span key={tIdx} className="text-[10px] font-extrabold text-brand-violet px-2 py-0.5 bg-brand-violet/5 rounded border border-brand-violet/10">
+                              {tech}
+                            </span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+
+                {/* Spacer for the other side of the timeline */}
+                <div className="hidden md:block md:w-[45%]" />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
-
-export default Experience;

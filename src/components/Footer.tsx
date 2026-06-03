@@ -1,75 +1,64 @@
-import { Mail, MapPin, Briefcase } from 'lucide-react';
-const Footer = () => {
-  const currentYear = new Date().getFullYear();
+import React from 'react';
+import { Github, Linkedin, Twitter, Mail, Heart, ArrowUp } from 'lucide-react';
+import { portfolioData } from '../data/portfolio';
+
+export const Footer = () => {
+  const { socialLinks, personalInfo } = portfolioData;
+  const { displayName, name } = personalInfo;
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const brandParts = displayName.split('.');
+  const brandFirst = brandParts[0];
+  const brandLast = brandParts[1] ? `.${brandParts[1]}` : '';
 
   return (
-    <footer className="py-12 border-t border-border/50 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute bottom-0 left-1/4 w-32 h-32 bg-primary/5 rounded-full blur-2xl" />
-          <div className="absolute bottom-0 right-1/4 w-32 h-32 bg-accent/5 rounded-full blur-2xl" />
+    <footer className="bg-white/40 backdrop-blur-xl border-t border-white/50 py-16">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+          <div className="flex flex-col items-center md:items-start">
+            <a href="#home" className="text-2xl font-extrabold text-brand-navy font-sans tracking-tight mb-4">
+              {brandFirst}<span className="text-brand-violet">{brandLast}</span>
+            </a>
+            <p className="text-brand-text-secondary text-[14px] max-w-sm text-center md:text-left leading-relaxed">
+              Engineering sustainable solutions and building modern digital experiences with code and circuits.
+            </p>
+          </div>
+
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex items-center gap-4">
+              <a href={socialLinks.github} target="_blank" rel="noopener noreferrer" className="p-3 bg-brand-bg-secondary text-brand-navy rounded-xl hover:bg-brand-navy hover:text-white transition-all shadow-sm">
+                <Github className="w-5 h-5" />
+              </a>
+              <a href={socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="p-3 bg-brand-bg-secondary text-brand-navy rounded-xl hover:bg-brand-navy hover:text-white transition-all shadow-sm">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href={socialLinks.twitter} target="_blank" rel="noopener noreferrer" className="p-3 bg-brand-bg-secondary text-brand-navy rounded-xl hover:bg-brand-navy hover:text-white transition-all shadow-sm">
+                <Twitter className="w-5 h-5" />
+              </a>
+              <a href={`mailto:${portfolioData.personalInfo.email}`} className="p-3 bg-brand-bg-secondary text-brand-navy rounded-xl hover:bg-brand-navy hover:text-white transition-all shadow-sm">
+                <Mail className="w-5 h-5" />
+              </a>
+            </div>
+            
+            <button 
+              onClick={scrollToTop}
+              className="flex items-center gap-2 text-[12px] font-extrabold text-brand-violet uppercase tracking-widest hover:text-brand-navy transition-colors"
+            >
+              Back to top
+              <ArrowUp className="w-4 h-4" />
+            </button>
+          </div>
         </div>
 
-        <div className="relative z-10">
-          <div className="grid md:grid-cols-3 gap-8 mb-8">
-            {/* Brand */}
-            <div className="space-y-4">
-              <div className="text-2xl font-bold gradient-text">
-                NIRANJAN
-              </div>
-              <p className="text-muted-foreground leading-relaxed">
-                Passionate about custom ROM development, Linux kernel optimization, and embedded systems, with hands-on experience in automation, wireless power transfer, and innovative hardware–software projects.
-              </p>
-            </div>
-
-            {/* Quick Links */}
-            <div className="space-y-4">
-              <h4 className="font-semibold text-primary">Quick Links</h4>
-              <div className="space-y-2">
-                {["Home", "About", "Projects", "Skills", "Contact"].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => {
-                      const element = document.getElementById(item.toLowerCase());
-                      if (element) {
-                        element.scrollIntoView({ behavior: "smooth" });
-                      }
-                    }}
-                    className="block text-muted-foreground hover:text-primary transition-smooth text-left"
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-4">
-              <h4 className="font-semibold text-primary">Get In Touch</h4>
-              <div className="space-y-2 text-muted-foreground">
-                <p><Mail className="inline-block h-4 w-4 mr-2" /> niranjankannan2003@gmail.com</p>
-                <p><MapPin className="inline-block h-4 w-4 mr-2" /> India</p>
-                <p><Briefcase className="inline-block h-4 w-4 mr-2" /> Available for projects</p>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Section */}
-          <div className="pt-8 border-t border-border/30">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <p className="text-sm text-muted-foreground w-full text-center">
-                © {currentYear} Niranjan BR. All rights reserved.
-              </p>
-              
-              <div className="flex items-center space-x-6">
-              </div>
-            </div>
-          </div>
+        <div className="mt-16 pt-8 border-t border-brand-border/60 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-[13px] text-brand-text-secondary">
+            © {new Date().getFullYear()} {name}. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
   );
 };
-
-export default Footer;

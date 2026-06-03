@@ -1,56 +1,70 @@
-import { useEffect } from "react";
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "next-themes";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
+import React, { useState, useEffect } from 'react';
+import { ArrowUp } from 'lucide-react';
+import { Navigation } from './components/Navigation';
+import { Hero } from './components/Hero';
+import { About } from './components/About';
+import { Skills } from './components/Skills';
+import { Experience } from './components/Experience';
+import { Projects } from './components/Projects';
+import { Education } from './components/Education';
+import { Contact } from './components/Contact';
+import { Footer } from './components/Footer';
+import { Toaster } from './components/ui/toaster';
+import { EasterEggBot } from './components/EasterEggBot';
 
+function App() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
-const queryClient = new QueryClient();
-
-const App = () => {
   useEffect(() => {
-    const blob = document.getElementById("pointer-blob");
-    const moveBlob = (e: MouseEvent) => {
-      if (blob) {
-        blob.style.transform = `translate(${e.clientX - 60}px, ${e.clientY - 60}px)`;
-      }
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
     };
-    window.addEventListener("mousemove", moveBlob);
-    return () => window.removeEventListener("mousemove", moveBlob);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <div className="bg-blur-gradient">
-        <div className="blob blob-top-left"></div>
-        <div className="blob blob-center-right"></div>
-        <div className="blob blob-bottom-right"></div>
-      </div>
-      <div id="pointer-blob"></div>
-      <ThemeProvider 
-        attribute="class" 
-        defaultTheme="dark" 
-        enableSystem={false}
-        storageKey="niranjan-portfolio-theme"
-      >
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </BrowserRouter>
-        </TooltipProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
+    <div className="min-h-screen bg-brand-bg-primary selection:bg-brand-violet/20 selection:text-brand-violet relative overflow-hidden">
+      {/* Background Liquid Blobs */}
+      <div className="absolute top-[5%] left-[-15%] w-[600px] h-[600px] rounded-full bg-brand-violet/20 blur-[130px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '12s' }} />
+      <div className="absolute top-[20%] right-[-15%] w-[700px] h-[700px] rounded-full bg-brand-green/15 blur-[150px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '14s', animationDelay: '2s' }} />
+      <div className="absolute top-[45%] left-[-10%] w-[600px] h-[600px] rounded-full bg-brand-violet/15 blur-[140px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '10s', animationDelay: '1s' }} />
+      <div className="absolute top-[70%] right-[-10%] w-[700px] h-[700px] rounded-full bg-brand-green/18 blur-[150px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '16s', animationDelay: '3s' }} />
+      <div className="absolute bottom-[5%] left-[-15%] w-[600px] h-[600px] rounded-full bg-brand-violet/18 blur-[130px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '13s', animationDelay: '1.5s' }} />
+      
+      <Navigation />
+      
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <Experience />
+        <Projects />
+        <Education />
+        <Contact />
+      </main>
+
+      <Footer />
+      <Toaster />
+
+      {/* Floating Back to Top Arrow Head */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-40 hidden md:flex items-center justify-center w-12 h-12 bg-white/45 backdrop-blur-xl border border-white/60 text-brand-navy rounded-full shadow-[0_8px_32px_rgba(0,0,0,0.08)] hover:bg-brand-navy hover:text-white hover:border-brand-navy hover:-translate-y-1 transition-all duration-300 group animate-in fade-in slide-in-from-bottom-4"
+          aria-label="Back to top"
+        >
+          <ArrowUp className="w-5 h-5 group-hover:animate-bounce" />
+        </button>
+      )}
+      {/* Easter Egg Bot */}
+      <EasterEggBot />
+    </div>
   );
-};
+}
 
 export default App;

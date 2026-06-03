@@ -1,129 +1,48 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
+import React, { useEffect } from 'react';
+import { Card } from './ui/Card';
+import { portfolioData } from '../data/portfolio';
+import { staggerReveal } from '../lib/animations';
 
-const Skills = () => {
-  const skillCategories = [
-    {
-      category: "Programming Languages",
-      skills: [
-        { name: "Python", level: 90, description: "Automation, scripting, data analysis" },
-        { name: "C", level: 85, description: "System programming, low-level development" },
-        { name: "Shell", level: 80, description: "System scripting, automation" },
-        { name: "Bash", level: 80, description: "Command-line scripting, system administration" }
-      ]
-    },
-    {
-      category: "Operating Systems",
-      skills: [
-        { name: "Linux", level: 90, description: "System administration, development environment" },
-        { name: "Windows Server", level: 85, description: "Enterprise server management" },
-        { name: "WSL", level: 80, description: "Windows Subsystem for Linux integration" }
-      ]
-    },
-    {
-      category: "Tools & Platforms",
-      skills: [
-        { name: "Git", level: 90, description: "Version control, collaboration" },
-        { name: "VMware", level: 85, description: "Virtualization, testing environments" },
-        { name: "AWS", level: 80, description: "Cloud services, deployment" },
-        { name: "AutoCAD", level: 75, description: "Computer-aided design" },
-        { name: "MATLAB", level: 85, description: "Mathematical computing, simulation" },
-        { name: "VS Code", level: 90, description: "Code editing, debugging, extensions" },
-        { name: "KiCad", level: 85, description: "PCB design, schematic capture, circuit simulation" },
-        { name: "Microsoft 365", level: 90, description: "Productivity suite, collaboration" }
+export const Skills = () => {
+  const { categories } = portfolioData.skills;
 
-      ]
-    }
-  ];
-
-  const getSkillColor = (level: number) => {
-    if (level >= 85) return "bg-gradient-primary";
-    if (level >= 75) return "bg-gradient-accent";
-    return "bg-primary";
-  };
+  useEffect(() => {
+    staggerReveal('.skill-reveal', 80);
+  }, []);
 
   return (
-    <section id="skills" className="py-20 relative overflow-hidden">
-      <div className="container mx-auto px-6">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-20 w-64 h-64 bg-accent/5 rounded-full blur-3xl" />
+    <section id="skills" className="py-24 bg-transparent">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-8">
+        <div className="flex flex-col items-center mb-16 text-center">
+          <h2 className="skill-reveal text-3xl md:text-4xl font-extrabold text-brand-navy mb-4 font-sans">
+            Technical Expertise
+          </h2>
+          <p className="skill-reveal text-brand-text-secondary max-w-2xl mb-6">
+            A comprehensive list of the technologies and tools I work with.
+          </p>
+          <div className="skill-reveal w-20 h-1.5 bg-brand-violet rounded-full"></div>
         </div>
 
-        <div className="relative z-10">
-          {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-16 animate-slide-up px-4 sm:px-0">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 gradient-text">
-              Technical Skills
-            </h2>
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
-              My expertise spans from low-level system programming to high-level application development
-            </p>
-          </div>
-
-          {/* Skills Grid */}
-          <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 px-4 sm:px-0">
-            {skillCategories.map((category, categoryIndex) => (
-              <Card 
-                key={category.category}
-                className="glass shadow-elegant border-border/50 transition-smooth hover:shadow-glow"
-                style={{ animationDelay: `${categoryIndex * 0.1}s` }}
-              >
-                <CardHeader>
-                  <CardTitle className="text-lg sm:text-xl font-semibold text-primary flex items-center">
-                    <div className="w-2 h-6 sm:h-8 bg-gradient-primary rounded-full mr-3" />
-                    {category.category}
-                  </CardTitle>
-                </CardHeader>
-                
-                <CardContent className="space-y-4 sm:space-y-6">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div 
-                      key={skill.name}
-                      className="space-y-2"
-                      style={{ animationDelay: `${categoryIndex * 0.1 + skillIndex * 0.05}s` }}
-                    >
-                      <div className="flex justify-between items-start sm:items-center gap-2">
-                        <div className="flex-1 min-w-0">
-                          <h4 className="font-medium text-foreground text-sm sm:text-base">{skill.name}</h4>
-                          <p className="text-xs text-muted-foreground leading-tight">{skill.description}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="relative">
-                        <Progress 
-                          value={skill.level} 
-                          className="h-2 bg-muted"
-                        />
-                      </div>
-                    </div>
-                  ))}
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-
-          {/* Additional Info */}
-          <div className="mt-16 text-center">
-            <Card className="glass shadow-elegant border-border/50 max-w-4xl mx-auto">
-              <CardContent className="p-8">
-                <h3 className="text-2xl font-semibold mb-4 text-primary">
-                  Continuous Learning & Growth
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Technology evolves rapidly, and I'm committed to staying at the forefront. 
-                  Currently exploring AI/ML integration in embedded systems, advanced kernel 
-                  security features, and next-generation hardware architectures. Always 
-                  excited to tackle new challenges and expand my technical horizons.
-                </p>
-              </CardContent>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {categories.map((category, index) => (
+            <Card key={index} className="skill-reveal flex flex-col items-center text-center">
+              <h3 className="text-lg font-bold text-brand-navy mb-6 font-sans">
+                {category.title}
+              </h3>
+              <div className="flex flex-wrap justify-center gap-2">
+                {category.skills.map((skill, sIdx) => (
+                  <span
+                    key={sIdx}
+                    className="px-3 py-1.5 bg-brand-bg-primary border border-brand-border text-brand-text-secondary text-[12px] font-bold rounded-brand-btn hover:border-brand-violet/30 hover:text-brand-violet transition-colors flex items-center gap-1.5"
+                  >
+                    {skill}
+                  </span>
+                ))}
+              </div>
             </Card>
-          </div>
+          ))}
         </div>
       </div>
     </section>
   );
 };
-
-export default Skills;
