@@ -34,7 +34,7 @@ export const EasterEggBot = () => {
 
   return (
     <div
-      className="fixed bottom-8 left-8 z-40 hidden md:block group"
+      className="fixed bottom-6 left-6 md:bottom-8 md:left-8 z-40 group"
       style={{ pointerEvents: 'auto' }}
     >
       {/* Tooltip speech bubble */}
