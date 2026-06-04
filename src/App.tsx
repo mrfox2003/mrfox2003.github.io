@@ -11,9 +11,11 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { Toaster } from './components/ui/toaster';
 import { EasterEggBot } from './components/EasterEggBot';
+import Preloader from './components/Preloader';
 
 function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,7 +30,9 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-bg-primary selection:bg-brand-violet/20 selection:text-brand-violet relative overflow-hidden">
+    <>
+      {isLoading && <Preloader onComplete={() => setIsLoading(false)} />}
+      <div className="min-h-screen bg-brand-bg-primary selection:bg-brand-violet/20 selection:text-brand-violet relative overflow-hidden">
       {/* Background Liquid Blobs */}
       <div className="absolute top-[5%] left-[-15%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-brand-violet/20 blur-[80px] md:blur-[130px] pointer-events-none -z-10 md:animate-float floating-element" style={{ animationDuration: '12s' }} />
       <div className="absolute top-[20%] right-[-15%] w-[350px] h-[350px] md:w-[700px] md:h-[700px] rounded-full bg-brand-green/15 blur-[90px] md:blur-[150px] pointer-events-none -z-10 md:animate-float floating-element" style={{ animationDuration: '14s', animationDelay: '2s' }} />
@@ -64,6 +68,7 @@ function App() {
       {/* Easter Egg Bot */}
       <EasterEggBot />
     </div>
+    </>
   );
 }
 
