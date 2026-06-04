@@ -30,11 +30,11 @@ function App() {
   return (
     <div className="min-h-screen bg-brand-bg-primary selection:bg-brand-violet/20 selection:text-brand-violet relative overflow-hidden">
       {/* Background Liquid Blobs */}
-      <div className="absolute top-[5%] left-[-15%] w-[600px] h-[600px] rounded-full bg-brand-violet/20 blur-[130px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '12s' }} />
-      <div className="absolute top-[20%] right-[-15%] w-[700px] h-[700px] rounded-full bg-brand-green/15 blur-[150px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '14s', animationDelay: '2s' }} />
-      <div className="absolute top-[45%] left-[-10%] w-[600px] h-[600px] rounded-full bg-brand-violet/15 blur-[140px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '10s', animationDelay: '1s' }} />
-      <div className="absolute top-[70%] right-[-10%] w-[700px] h-[700px] rounded-full bg-brand-green/18 blur-[150px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '16s', animationDelay: '3s' }} />
-      <div className="absolute bottom-[5%] left-[-15%] w-[600px] h-[600px] rounded-full bg-brand-violet/18 blur-[130px] pointer-events-none -z-10 animate-float" style={{ animationDuration: '13s', animationDelay: '1.5s' }} />
+      <div className="absolute top-[5%] left-[-15%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-brand-violet/20 blur-[80px] md:blur-[130px] pointer-events-none -z-10 md:animate-float floating-element" style={{ animationDuration: '12s' }} />
+      <div className="absolute top-[20%] right-[-15%] w-[350px] h-[350px] md:w-[700px] md:h-[700px] rounded-full bg-brand-green/15 blur-[90px] md:blur-[150px] pointer-events-none -z-10 md:animate-float floating-element" style={{ animationDuration: '14s', animationDelay: '2s' }} />
+      <div className="absolute top-[45%] left-[-10%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-brand-violet/15 blur-[80px] md:blur-[140px] pointer-events-none -z-10 md:animate-float floating-element" style={{ animationDuration: '10s', animationDelay: '1s' }} />
+      <div className="absolute top-[70%] right-[-10%] w-[350px] h-[350px] md:w-[700px] md:h-[700px] rounded-full bg-brand-green/18 blur-[90px] md:blur-[150px] pointer-events-none -z-10 md:animate-float floating-element" style={{ animationDuration: '16s', animationDelay: '3s' }} />
+      <div className="absolute bottom-[5%] left-[-15%] w-[300px] h-[300px] md:w-[600px] md:h-[600px] rounded-full bg-brand-violet/18 blur-[80px] md:blur-[130px] pointer-events-none -z-10 md:animate-float floating-element" style={{ animationDuration: '13s', animationDelay: '1.5s' }} />
       
       <Navigation />
       

@@ -11,6 +11,7 @@ export const staggerReveal = (targets: string, delay = 0) => {
       htmlEl.style.opacity = '0';
       htmlEl.style.transform = 'translateY(20px)';
       htmlEl.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+      htmlEl.style.willChange = 'opacity, transform';
     }
   });
 
