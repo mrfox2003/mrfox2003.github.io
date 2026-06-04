@@ -140,3 +140,17 @@
   backface-visibility: hidden;
   perspective: 1000px;
 }
+
+/* Snappy Page Load & Scroll Reveal Hardware Acceleration */
+.hero-reveal,
+.about-reveal,
+.skill-reveal,
+.project-reveal,
+.exp-reveal,
+.edu-reveal,
+.contact-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: opacity, transform;
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
