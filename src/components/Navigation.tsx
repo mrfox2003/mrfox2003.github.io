@@ -69,7 +69,6 @@ export const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScrollSpy);
   }, []);
 
-  // Reordered: Experience comes before Projects to match vertical page flow
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
@@ -79,7 +78,6 @@ export const Navigation = () => {
     { name: 'Contact', href: '#contact' }
   ];
 
-  // Reordered: Experience comes before Projects to match vertical page flow
   const mobileLinks = [
     { id: 'home', name: 'Home', href: '#home', Icon: Home },
     { id: 'about', name: 'About', href: '#about', Icon: User },
@@ -94,12 +92,12 @@ export const Navigation = () => {
 
   return (
     <>
-      {/* Top Header Navigation - High Index Liquid Glass when Scrolled */}
+      {/* Top Header Navigation - High Clarity Crystal Glass when Scrolled */}
       <nav 
         className={`
           fixed top-0 left-0 right-0 z-50 transition-all duration-300
           ${isScrolled 
-            ? 'py-4 bg-white/20 backdrop-blur-[30px] backdrop-saturate-[180%] border-b border-white/40 shadow-[0_8px_32px_rgba(0,0,0,0.03)] dark:bg-brand-navy/35 dark:border-white/10' 
+            ? 'py-4 bg-white/6 backdrop-blur-[30px] backdrop-saturate-[180%] border-b border-white/20 shadow-[0_8px_32px_rgba(0,0,0,0.01)] dark:bg-brand-navy/5 dark:border-white/5' 
             : 'py-6 bg-transparent'}
         `}
       >
@@ -136,13 +134,13 @@ export const Navigation = () => {
         </div>
       </nav>
 
-      {/* Floating Bottom Apple-Grade Liquid Glass Tab Bar (Strictly Mobile Only) */}
+      {/* Floating Bottom High Clarity Crystal Glass Tab Bar (Strictly Mobile Only) */}
       <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-50 w-[calc(100%-32px)] max-w-[360px]">
-        {/* Colorful Glow & Refraction backing shadow */}
-        <div className="absolute inset-0 bg-brand-violet/10 dark:bg-brand-green/10 blur-2xl -z-10 rounded-full" />
+        {/* Subtle Glow backing shadow */}
+        <div className="absolute inset-0 bg-brand-violet/5 dark:bg-brand-green/5 blur-2xl -z-10 rounded-full" />
         
-        {/* Thick Liquid Glass Capsule Panel */}
-        <div className="relative flex justify-around items-center py-2.5 px-3 bg-white/25 dark:bg-[#040f1a]/40 backdrop-blur-[36px] backdrop-saturate-[200%] border border-white/45 dark:border-white/15 rounded-full shadow-[inset_0_2px_4px_rgba(255,255,255,0.45),inset_0_-1px_1px_rgba(0,0,0,0.05),0_16px_36px_-8px_rgba(0,0,0,0.22)]">
+        {/* Crystal Clear Liquid Glass Capsule Panel */}
+        <div className="relative flex justify-around items-center py-2.5 px-3 bg-white/6 dark:bg-black/5 backdrop-blur-[36px] backdrop-saturate-[200%] border border-white/20 dark:border-white/5 rounded-full shadow-[inset_0_2px_4px_rgba(255,255,255,0.2),inset_0_-1px_1px_rgba(0,0,0,0.02),0_16px_36px_-8px_rgba(0,0,0,0.12)]">
           {mobileLinks.map((link) => {
             const IconComponent = link.Icon;
             const isActive = activeSection === link.id;
