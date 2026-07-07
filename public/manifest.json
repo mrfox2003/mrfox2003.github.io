@@ -1,0 +1,24 @@
+{
+  "name": "Niranjan BR Portfolio",
+  "short_name": "Niranjan BR",
+  "description": "Android ROM & Linux Kernel Developer Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#040f1a",
+  "theme_color": "#040f1a",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
